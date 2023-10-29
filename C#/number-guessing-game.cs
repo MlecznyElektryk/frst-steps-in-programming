@@ -5,36 +5,45 @@
         static void Main(string[] args)
         {
             int drawnNum, guessedNum, attempts;
+            string choose = "Y";
 
             Random r = new Random();
 
             Console.WriteLine("Hello! This is a game where you have to guess which number " +
                "has been drawn.\nI will tell you how many attempts you have made! " +
-               "The number is an integer less than 10 and greater than -10. Good luck!" +
-               "\nPlease type the guessed number: ");
+               "The number is an integer less than 10 and greater than -10. Good luck!");
 
-            guessedNum = Convert.ToInt32(Console.ReadLine());
-            drawnNum = r.Next(-10, 10);
-            attempts = 1;
-            while(drawnNum != guessedNum)
+            while(choose == "Y")
             {
-                if (drawnNum < guessedNum)
+                attempts = 1;
+                drawnNum = r.Next(-10, 10);
+
+                Console.WriteLine("Please type the guessed number: ");
+                guessedNum = Convert.ToInt32(Console.ReadLine());
+
+                while (drawnNum != guessedNum)
                 {
-                    Console.WriteLine("Too much! Please try again: ");
-                    guessedNum = Convert.ToInt32(Console.ReadLine());
-                    attempts++;
+                    if (drawnNum < guessedNum)
+                    {
+                        Console.WriteLine("Too much! Please try again: ");
+                        guessedNum = Convert.ToInt32(Console.ReadLine());
+                        attempts++;
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Too little! Please try again: ");
+                        guessedNum = Convert.ToInt32(Console.ReadLine());
+                        attempts++;
+                    }
                 }
 
-                else
-                {
-                    Console.WriteLine("Too little! Please try again: ");
-                    guessedNum = Convert.ToInt32(Console.ReadLine());
-                    attempts++;
-                }
+                Console.WriteLine("Congratulations! You have guessed the right number on the " +
+                    +attempts + ". attempt. \nDo you want to play again (Y/N)?");
+
+                choose = (Console.ReadLine()).ToUpper();
             }
-
-            Console.WriteLine("Congratulations! You have guessed the right number on the " +
-                + attempts + ". attempt.");
+            Console.WriteLine("Thanks!");
         }
     }
 }
