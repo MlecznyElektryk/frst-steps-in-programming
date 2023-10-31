@@ -20,6 +20,7 @@ namespace rock_paper_scissors_game
                 Console.WriteLine("Rock, paper or scissors? \nType your guess: ");
                 player = (Console.ReadLine()).ToUpper();
 
+                Console.WriteLine($"Computer: {computer} \nYou: {player}");
                 Console.WriteLine(resultOfGame(player, computer));
 
                 Console.WriteLine("Do you want to play again? (Y/N)");
@@ -32,21 +33,26 @@ namespace rock_paper_scissors_game
             string temp = "DRAW"; 
             if (player == computer) return temp;
 
-            switch (computer)
+            switch (player)
             {
                 case "ROCK":
-                {
-                        temp = (player == "PAPER") ? "You WIN!" : "You LOOSE!";
+                {       
+                        temp = (computer == "PAPER") ? "You LOOSE" : "You WIN!";
                         break;
                 }
                 case "PAPER":
                 {
-                        temp = (player == "SCISSORS") ? "You WIN!" : "You LOOSE!";
+                        temp = (computer == "SCISSORS") ? "You LOOSE!" : "You WIN!";
                         break;
                 }
                 case "SCISSORS":
                 {
-                        temp = (player == "ROCK") ? "You WIN!" : "You LOOSE!";
+                        temp = (computer == "ROCK") ? "You LOOSE!" : "You WIN!";
+                        break;
+                }
+                default:
+                {
+                        temp = "Not a valid option!";
                         break;
                 }
             }
